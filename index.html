@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+    <head>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+        <title>Selenium Example Demo Page</title>
+        <style type="text/css" media="screen"></style>
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.js"></script>
+        <script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+	<script type="text/javascript" src="utils.js"></script>
+        <link type="text/css" rel="stylesheet" href="./themes/jquery-ui-1.9.2.custom.css"/>
+        <link type="text/css" rel="stylesheet" href="styles.css" />
+        <link type="text/css" rel="stylesheet" href="./resources/qunit.css" />
+    </head>
+    <body>
+	<div id="pageContent">
+        <h1 id="title">Demo page for selenium code</h1>
+        <div class='input'>
+            <label for="inputDelay">Enter time to delay ajax response in secs</label>
+            <div id='inputContainerOverflow'>
+                <div id='inputContainer'>
+                    <input id='inputDelay' type='text' value='0' />
+                    <div id="delayIndicator" class="sliderDiv"></div>
+                </div>
+                <div id="validateErrorContainer"><b id='validateError'></b></div>
+            </div>
+        </div>
+        
+        <div id="nav">
+        <ul class="drop">
+            <li class='menuParent'>Famous lines
+                <ul>
+                    <li><a href="#" id='1' class='menuItem'>Mae West</a></li>
+                    <!-- Mae West "I used to be Snow White, but I drifted." I'm No Angel (1933) -->
+                    <li><a href="#" id='2' class='menuItem'>Woody Allen</a></li>
+                    <!-- Woody Allen "My brain: it's my second favorite organ." Sleeper (1973)-->
+                    <li><a href="#" id='3' class='menuItem'>Kenneth Williams</a></li>
+                    <!-- Kenneth Williams "Infamy! Infamy. They've all got it in for me!" Carry on Cleo (1964)-->
+                    <li><a href="#" id='4' class='menuItem'>Carleton Young</a></li>
+                    <!-- Carleton Young "When the legend becomes fact, print the legend." The Man Who Shot Liberty Valance (1962) -->
+                </ul>			
+            </li>
+            <li class='menuParent'>Opening Lines
+                <ul>
+                    <li><a href="#">Books</a>
+                        <ul>
+                            <li><a href="#" id='5' class='menuItem'>Fear and Loathing in Las Vegas</a></li>
+                            <!--  Hunter S. Thompson "We were somewhere around Barstow on the edge of the desert when the drugs began to take hold." Fear and Loathing in Las Vegas -->
+                            <li><a href="#" id='6' class='menuItem'>The Go-Between</a></li>
+                            <!--L.P. Hartley "The past is a foreign country; they do things differently there." The Go-Between -->
+                            <li><a href="#" id='7' class='menuItem'>Neuromancer</a></li>
+                            <!-- William Gibson "The sky above the port was the color of television, tuned to a dead channel" Neuromancer-->
+                            <li><a href="#" id='8' class='menuItem'>Peter Pan</a></li>
+                            <!--J.M. Barrie "All children, except one, grow up." Peter Pan -->
+                        </ul>
+                    </li>
+                    <li><a href="#">Poems</a>
+                        <ul>
+                            <li><a href="#" id='9' class='menuItem'>The Road Not Taken</a></li>
+                            <!-- The Road Not Taken "Two roads diverged in a wood, and I - / I took the one less traveled by, / And that has made all the difference." Robert Frost  -->
+                            <li><a href="#" id='10' class='menuItem'>Howl</a></li>
+                            <!-- Howl "I saw the best minds of my generation destroyed by madness." Allen Ginsberg -->
+                            <li><a href="#" id='11' class='menuItem'>Tyger! Tyger!</a></li>
+                            <!-- Tyger! Tyger! "Tyger! Tyger! burning bright / In the forests of the night, / What immortal hand or eye / Could frame thy fearful symmetry?" William Blake -->
+                            <li><a href="#" id='12' class='menuItem'>This be the verse</a></li>
+                            <!-- This be the verse "They f*** you up, your mom and dad" Philip Larkin -->
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li class='menuParent'>Last Lines
+              <ul>
+                <li><a href="#">Films</a>
+                    <ul>
+                        <li><a href="#" id='13' class='menuItem'>Casablanca</a></li>
+                        <!-- "Louis, I think this is the beginning of a beautiful friendship." Casablanca (1942) -->
+                        <li><a href="#" id='14' class='menuItem'>The Producers</a></li>
+                        <!-- "Sing it out, men! Higher, you animals, higher! We open in Leavenworth Saturday night!" The Producers (1968) -->
+                        <li><a href="#" id='15' class='menuItem'>Sunset Boulevard</a></li>
+                        <!-- "All right, Mr. DeMille, I'm ready for my closeup" Sunset Boulevard (1950). -->
+                        <li><a href="#" id='16' class='menuItem'>Back to the future</a></li>
+                        <!-- "Roads? Where we’re going, we don't need roads!" Back to the future (1985) -->
+                    </ul>
+                </li>
+                <li><a href="#">Books</a>
+                    <ul>
+                        <li><a href="#" id='17' class='menuItem'>The Great Gatsby</a></li>
+                        <!-- F. Scott Fitzgerald "So we beat on, boats against the current, borne back ceaselessly into the past." The Great Gatsby -->
+                        <li><a href="#" id='18' class='menuItem'>The Nine Billion Names of God</a></li>
+                        <!-- Arthur C. Clarke "Overhead, without any fuss, the stars were going out." The Nine Billion Names of God -->
+                        <li><a href="#" id='19' class='menuItem'>1984</a></li>
+                        <!-- George Orwell "He loved Big Brother" 1984-->
+                    </ul>
+                </li>
+              </ul>
+            </li>
+            <li class='menuParent'>Final words
+                <ul>
+                    <li class="dir"><a href="#"id='20' class='menuItem'>Humphrey Bogart</a></li>
+                    <!-- I should never have switched from Scotch to Martinis. -->
+                    <li><a href="#" id='21' class='menuItem'>John Dilinger</a></li>
+                    <!-- You got me. -->
+                    <li><a href="#" id='22' class='menuItem'>Elizabeth I</a></li>
+                    <!-- All my possessions for a moment of time. -->
+                    <li><a href="#" id='23' class='menuItem'>John Maynard Keynes</a></li>
+                    <!-- I should have drunk more Champagne. -->
+                </ul>
+            </li>
+            <li class='menuParent'>Bon mots
+                <ul>
+                    <li><a href="#" id='24' class='menuItem'>Oscar Wilde</a></li>
+                    <!-- To love oneself is the beginning of a lifelong romance. -->
+                    <li><a href="#" id='25' class='menuItem'>Groucho Marx</a></li>
+		    <!-- I find television very educational. Every time someone switches it on I go into another room and read a good book. -->
+                    <li><a href="#" id='26' class='menuItem'>Dorothy Parker</a></li>
+                    <!-- What fresh hell can this be? -->
+                    <li><a href="#" id='27' class='menuItem'>Woody Allen</a></li>
+                    <!-- Can we actually know" the universe? My God, it's hard enough finding your way around in Chinatown. -->
+                </ul>
+            </li>
+        </ul>
+        </div>
+        
+        <div id="Main">
+            <div id="contentTxt" class='content'>Text Content</div>
+            <div id='radioBtns' class='content'>
+                <div class='contentLegend'>Radio buttons</div>
+                <input type='radio' name='radioSet' value='one' />Radio 1<br />
+                <input type='radio' name='radioSet' value='two' />Radio 2
+            </div>
+            <div id='checkBoxes' class='content'>
+                <div class='contentLegend'>Check boxes</div>
+                <input type="checkbox" name="vehicle" value="one" />Checkbox 1<br />
+                <input type="checkbox" name="vehicle" value="two" />Checkbox 2
+            </div>
+                <div id='Drag-Drop' class='content'>
+                    <div class='contentLegend'>Drag and drop<span id='dropCount'></span></div>
+                    <div class='dragSrc'>
+                        <div class='contentLegend'>Drag</div>
+                        <img id='draggable' src='sphere.png'/>
+                    </div>
+                    <div id='droppable' class='dragDrop'>
+                        <div class='contentLegend'>Drop</div>
+                    </div>
+                </div>
+            <div id='password' class='content'>
+                <div class='contentLegend'>Password</div>
+                <input type="password" name="pwd" value="********" />
+            </div>
+            <div id='fileSelect' class='content'>
+                <div class='contentLegend'>File select</div>
+                <input type="file" />
+            </div>
+        </div>
+	</div>
+	<div id='testContent'></div>
+    </body>
+</html>

@@ -1,0 +1,124 @@
+body	{
+        font-family: 'Lucida Sans Unicode', 'Bitstream Vera Sans', 'Trebuchet Unicode MS', 'Lucida Grande', Verdana, Helvetica, sans-serif;
+        /*width: 500px;*/
+        }
+#pageContent {
+	float: left;
+	width: 500px;
+	}
+#testContent {
+	float: left;
+	width: 500px;
+	margin-top: 20px;
+	margin-left: 20px;
+}
+.input {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        }
+.input label {
+        display: block;
+        margin-bottom: 10px;
+        }
+#inputContainerOverflow {
+	overflow: auto;
+	height: 40px;
+	}
+#inputContainer {
+	width: 101px;
+	float: left;
+	}
+#inputDelay {
+        width: 95px;
+        }
+#validateErrorContainer {
+	margin: 0 0 0 110px;
+	}
+#delayIndicator {
+        height: 5px;
+        width: 100px;
+	}
+div#nav {
+	height: 30px;
+	}
+div#contentTxt{
+     min-height:65px;
+     height:auto !important;
+     height:65px;
+	} 
+ul.drop {
+	position: relative;
+	z-index: 597;
+	float: left;
+	}
+ul.drop ul, ul.drop li, ul.drop {
+	list-style: none;
+	font-size: 14px;
+	margin: 0;
+	padding: 0;
+	border: 1px solid #fff;
+	background: #555;
+	color: #fff;
+	}
+ul.drop li {
+	float: left;
+	line-height: 1.3em;
+	vertical-align: middle;
+	zoom: 1;
+	padding: 5px 9px;
+	}
+ul.drop ul {
+	/*visibility: hidden;*/
+	position: absolute;
+	top: 100%;
+	left: 0;
+	z-index:598;
+	width: 195px;
+	background: #555;
+	border: 1px solid #fff;
+	}
+
+ul.drop a {
+	display:block;
+	color: #fff;
+	text-decoration: none;
+	}
+
+ul.drop ul li {
+	float: none;
+	}
+	
+ul.drop ul ul {
+	top: -2px;
+	left: 100%;
+	}
+
+ul.drop li:hover { position: relative; z-index: 599; cursor: default; background: #1e7c9a; }
+
+.content {
+        border: 2px solid black;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        height: auto;
+        }
+.content input {
+        margin-top: 5px;
+        margin-bottom: 10px;
+        margin-left: 5px;
+        }
+.contentLegend {
+        background-color: #CCCCCC;
+        padding: 2px 0px 2px 2px;
+        margin: 0px 0px 2px 0px;
+        }
+#Drag-Drop {
+		height: 110px;
+		}
+		
+.dragSrc, .dragDrop {
+		float: left;
+		margin: 2px;
+		border: 2px solid black;
+		width: 240px;
+		height: 75px;
+		}
