@@ -1,17 +1,8 @@
 body	{
         font-family: 'Lucida Sans Unicode', 'Bitstream Vera Sans', 'Trebuchet Unicode MS', 'Lucida Grande', Verdana, Helvetica, sans-serif;
-        /*width: 500px;*/
-        }
-#pageContent {
-	float: left;
-	width: 500px;
+        width: 500px;
+	padding: 5px;
 	}
-#testContent {
-	float: left;
-	width: 500px;
-	margin-top: 20px;
-	margin-left: 20px;
-}
 .input {
         margin-top: 10px;
         margin-bottom: 10px;
@@ -112,13 +103,13 @@ ul.drop li:hover { position: relative; z-index: 599; cursor: default; background
         margin: 0px 0px 2px 0px;
         }
 #Drag-Drop {
-		height: 110px;
-		}
+	height: 110px;
+	}
 		
 .dragSrc, .dragDrop {
-		float: left;
-		margin: 2px;
-		border: 2px solid black;
-		width: 240px;
-		height: 75px;
-		}
+	float: left;
+	margin: 2px;
+	border: 2px solid black;
+	width: 240px;
+	height: 75px;
+	}

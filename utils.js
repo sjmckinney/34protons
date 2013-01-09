@@ -93,41 +93,6 @@ function GetURLParameter(sParam)
 }
 
 /*
- *Function to get url parameter
- *
- */
-function getURLParameters(paramName) 
-{
-    var sURL = window.document.URL.toString();  
-    if (sURL.indexOf("?") > 0)
-    {
-       var arrParams = sURL.split("?");         
-       var arrURLParams = arrParams[1].split("&");      
-       var arrParamNames = new Array(arrURLParams.length);
-       var arrParamValues = new Array(arrURLParams.length);     
-       var i = 0;
-       for (i=0;i<arrURLParams.length;i++)
-       {
-        var sParam =  arrURLParams[i].split("=");
-        arrParamNames[i] = sParam[0];
-        if (sParam[1] != "")
-            arrParamValues[i] = unescape(sParam[1]);
-        else
-            arrParamValues[i] = "No Value";
-       }
-
-       for (i=0;i<arrURLParams.length;i++)
-       {
-			if(arrParamNames[i] == paramName){
-            //alert("Param:"+arrParamValues[i]);
-            return arrParamValues[i];
-            }
-       }
-       return "No Parameters Found";
-    }
-}
-
-/*
  *jQuery document.ready function wrapped in try/catch block for reasons I can't remember
  *
  *
@@ -139,17 +104,6 @@ try{
     var dropped = 0;
     //hide child menu items
     $('ul.drop ul').css('visibility', 'hidden');
-
-    $(function(){
-        if(getURLParameters('test') == 'true'){
-        //remember to empty <div id='testContent'></div>
-        var code = "<div id='qunit'></div>"
-        code += "<script type='text/javascript' src='./resources/qunit.js'></script>";
-        code += "<script type='text/javascript' src='./resources/qunit-parameterize.js'></script>";
-        code += "<script type='text/javascript' src='./resources/tests.js'></script></script>";
-        $('#testContent').append(code);
-        }
-    });
     
     //hide and unhide child menu items on mouseover and mouseout
     $('li.menuParent').mouseover(function(){
