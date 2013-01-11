@@ -1,16 +1,22 @@
-body	{
-        font-family: 'Lucida Sans Unicode', 'Bitstream Vera Sans', 'Trebuchet Unicode MS', 'Lucida Grande', Verdana, Helvetica, sans-serif;
-        width: 500px;
+body{
+	font-family: 'Lucida Sans Unicode', 'Bitstream Vera Sans', 'Trebuchet Unicode MS', 'Lucida Grande', Verdana, Helvetica, sans-serif;
+	width: 500px;
+	}
+#title	{
+	font-size: 2em;
+	margin: 2px;
 	padding: 5px;
+	border-style: solid;
+	border-width: 1px;
 	}
 .input {
-        margin-top: 10px;
-        margin-bottom: 10px;
-        }
+    margin-top: 10px;
+    margin-bottom: 10px;
+    }
 .input label {
-        display: block;
-        margin-bottom: 10px;
-        }
+    display: block;
+    margin-bottom: 10px;
+	}
 #inputContainerOverflow {
 	overflow: auto;
 	height: 40px;
@@ -20,22 +26,22 @@ body	{
 	float: left;
 	}
 #inputDelay {
-        width: 95px;
-        }
+    width: 95px;
+    }
 #validateErrorContainer {
 	margin: 0 0 0 110px;
 	}
 #delayIndicator {
-        height: 5px;
-        width: 100px;
+	height: 5px;
+	width: 100px;
 	}
 div#nav {
 	height: 30px;
 	}
 div#contentTxt{
-     min-height:65px;
-     height:auto !important;
-     height:65px;
+    min-height:65px;
+    height:auto !important;
+    height:65px;
 	} 
 ul.drop {
 	position: relative;
@@ -87,21 +93,21 @@ ul.drop ul ul {
 ul.drop li:hover { position: relative; z-index: 599; cursor: default; background: #1e7c9a; }
 
 .content {
-        border: 2px solid black;
-        margin-top: 5px;
-        margin-bottom: 5px;
-        height: auto;
-        }
+	border: 2px solid black;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	height: auto;
+	}
 .content input {
-        margin-top: 5px;
-        margin-bottom: 10px;
-        margin-left: 5px;
-        }
+	margin-top: 5px;
+	margin-bottom: 10px;
+	margin-left: 5px;
+	}
 .contentLegend {
-        background-color: #CCCCCC;
-        padding: 2px 0px 2px 2px;
-        margin: 0px 0px 2px 0px;
-        }
+	background-color: #CCCCCC;
+	padding: 2px 0px 2px 2px;
+	margin: 0px 0px 2px 0px;
+	}
 #Drag-Drop {
 	height: 110px;
 	}

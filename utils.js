@@ -13,10 +13,21 @@ function httpRequestFactory() {
 }
 
 /*
+*Return input value from field
+*/
+function getInputValue() {
+	return $('#inputDelay').attr('value');
+}
+
+/*
  *Animate progress bar underneath input field
  */
 function ajaxProgress() {
-    var delay=$('#inputDelay').attr('value');
+	var delay = Number(validateNumeric());
+	//return if value  is zero
+	if(!delay > 0) {
+		return
+		};
     var max = 100;
     //Since progress bar is 100 pixels wide calc number of px to be added each sec
     var delayPerSec = max/delay;
@@ -42,22 +53,34 @@ Validate input is numeric
 */
 function validateNumeric() {
     
+	//clear the error display field
     $('#validateError').html('');
+	//initialize the match expression
     var numericExpression = /^[0-9]+$/;
-    var sleepTime = $('#inputDelay').attr('value');
-        if(sleepTime == '') {
-            sleepTime = '0'
-        } else if (!sleepTime.match(numericExpression)) {
-            $('#validateError').html('Value of delay time is not a positive numeric value');
-        }
-    }
+	//get the input value
+	var sleepTime = getInputValue();
+	//test input value is numeric
+	if (!sleepTime.match(numericExpression)) {
+		//and write error message to page if not
+		showErrorMsg();
+		sleepTime = 0;
+	}
+	return sleepTime;
+}
+
+/*
+*
+*/
+function showErrorMsg() {
+	$('#validateError').html('Value is not positive and numeric; zero value assumed');
+}
 
 function getBodyText(URL) {
     var ajax = httpRequestFactory();
     ajax.onreadystatechange = function() {
         if (ajax.readyState == 4) {
-	    $('#contentTxt').html("");
-            $('#contentTxt').html(ajax.responseText);
+			$('#contentTxt').html("");
+			$('#contentTxt').html(ajax.responseText);
         }
     }
     ajax.open("GET", URL, true);
@@ -68,28 +91,9 @@ function menuItemClick(e) {
     
     e = e||window.event;
     var src = e.target||e.srcElement;
-    var sleepTime = $('#inputDelay').attr('value');
+	var sleepTime = getInputValue();
     getBodyText("bodyText.php?sleep=" + sleepTime + "&MnuItm=" + src.id);
-    //console.log("menuItem clicked");
-    
-}
-/*
- *Used to test for presence of url parameter to display test
- *
- *
- */
-function GetURLParameter(sParam)
-{
-    var sPageURL = window.location.search.substring(1);
-    var sURLVariables = sPageURL.split('&');
-    for (var i = 0; i < sURLVariables.length; i++) 
-    {
-        var sParameterName = sURLVariables[i].split('=');
-        if (sParameterName[0] == sParam) 
-        {
-            return sParameterName[1];
-        }
-    }
+    //console.log("bodyText.php?sleep=" + sleepTime + "&MnuItm=" + src.id); 
 }
 
 /*
