@@ -3,11 +3,11 @@ body	{
 	}
 
 #test-title	{
-	width: 1030px;
+	width: 1130px;
 	text-align: center;
 	}
 #test-wrapper{
-	width: 1035px;
+	width: 1135px;
 	padding-left: 10px;
 	}
 #pageContent {
@@ -20,5 +20,5 @@ body	{
 #testContent {
 	padding-left: 10px;
 	float: right;
-	width: 500px;
+	width: 600px;
 	}

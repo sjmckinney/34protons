@@ -32,13 +32,13 @@
             echo 'J.M. Barrie "All children, except one, grow up." Peter Pan';
             break;
         case "9":
-            echo 'The Road Not Taken "Two roads diverged in a wood, and I - I took the one less traveled by, And that has made all the difference." Robert Frost';
+            echo 'Robert Frost "Two roads diverged in a wood, and I - I took the one less traveled by, And that has made all the difference." The Road Not Taken';
             break;
         case "10":
             echo 'Allen Ginsburg "I saw the best minds of my generation destroyed by madness." Howl';
             break;
         case "11":
-            echo 'William Blake "Tyger! Tyger! burning bright / In the forests of the night, / What immortal hand or eye / Could frame thy fearful symmetry?" Tyger! Tyger!';
+            echo 'William Blake "Tyger! Tyger! burning bright in the forests of the night. What immortal hand or eye could frame thy fearful symmetry?" Tyger! Tyger!';
             break;
         case "12":
             echo 'Philip Larkin "They f*** you up, your mom and dad" This be the verse';
