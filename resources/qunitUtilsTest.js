@@ -1,6 +1,14 @@
-var errTxt = 'Value is not positive and numeric; zero value assumed';
-var utils = new Utils();
-//Test error message is displayed or not dependent on input
+//module("Test error message is displayed or not dependent on input", {
+//	setup: function() {
+		var errTxt = 'Value is not positive and numeric; zero value assumed';
+		var utils = new Utils();
+		//Create and append test div for testing of function validateNumeric
+//		$('<div></div>').attr('id', 'validateError').appendTo($('body'));
+//		},
+//	teardown: function() {
+//		}
+//	});
+
 
 QUnit
 	.cases([
@@ -16,9 +24,8 @@ QUnit
 		{ title: "boolean true", a : true, expectedTxt : errTxt},
 		{ title: "NaN", a : NaN, expectedTxt : errTxt}
 		])
+	.module("test module")
 	.test("validateNumeric: error message", function(params) {
-		$('#validateError').html("");
-		//$('#inputDelay').val(params.a);
 		utils.validateNumeric(params.a);
 		equal( $('#validateError').html(), params.expectedTxt);
 	});
@@ -40,7 +47,16 @@ QUnit
 	.test("validateNumeric(): return value", function(params) {
 		equal( utils.validateNumeric(params.a), params.returnValue);
 	});
-        
+	//remove test div
+	$('#validateError').remove();
+
+//
+$('<div></div>').attr('id', 'validateError').appendTo($('body'));
+			$('<a></a>').attr('id', '1').appendTo($('body'));
+			$('<input>').attr({id:'inputDelay', type:"text", value:0}).appendTo($('body'));
+			$('<div></div>').attr('id', 'contentTxt').appendTo($('body'));
+			$('#1').click(utils.getQuote);
+   
 QUnit
 	.cases([
 		{ title: "Famous Lines - Mae West", a : 1, returnValue : "Mae West \"I used to be Snow White, but I drifted.\" I'm No Angel (1933)"},
