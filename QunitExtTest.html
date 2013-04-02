@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+    <head>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+	<script type='text/javascript' src='./app/utils.js'></script>
+	<script type='text/javascript' src='./resources/qunit.js'></script>
+	<script type='text/javascript' src='./resources/qunit-parameterize.js'></script>
+	<link type="text/css" rel="stylesheet" href="./tests/test.css" />
+	<link type="text/css" rel="stylesheet" href="./resources/qunit.css" />
+	<script>
+		$.ajax({
+		    url: "index.html",
+		    context: document.body
+		    }).done(function(data) {
+		    $('#pageContent').append(data);
+		    $.getScript('./app/utils.js');
+		});
+	</script>
+    </head>
+    <body>
+	<h1 id='test-title'>Extended test page for QUnit</h1>
+	<div id='test-wrapper'>
+	    <div id='pageContent'></div>		
+	    <div id='testContent'></div>
+		<script>
+		    $( function() {
+			$('#testContent').append("<div id='qunit'></div><script type='text/javascript' src='./tests/qunitExtUtilsTests.js'></" + "script>");
+		    });
+		</script>
+	</div>
+    </body>
+</html>

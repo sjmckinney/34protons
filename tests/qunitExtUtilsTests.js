@@ -1,7 +1,15 @@
+/*
+* name:		qunitUtilsTests.js
+* author:	Steve McKinney
+* date:		02/04/2013
+* purpose:	Extended qunit test for use with QunitExtTest.html.
+* 			The latter incorporates the page under test as well as quit test. 
+*/
+
 var errTxt = 'Value is not positive and numeric; zero value assumed';
 var utils = new Utils();
 //Test error message is displayed or not dependent on input
-
+module("validateNumeric: error msg");
 QUnit
 	.cases([
 		{ title: "minus 1", a : -1, expectedTxt : errTxt},
@@ -16,13 +24,12 @@ QUnit
 		{ title: "boolean true", a : true, expectedTxt : errTxt},
 		{ title: "NaN", a : NaN, expectedTxt : errTxt}
 		])
-	.test("validateNumeric: error message", function(params) {
+	.test("", function(params) {
 		$('#validateError').html("");
-		//$('#inputDelay').val(params.a);
 		utils.validateNumeric(params.a);
 		equal( $('#validateError').html(), params.expectedTxt);
 	});
-	
+module("validateNumeric: return value");	
 QUnit
 	.cases([
 		{ title: "minus 1", a : -1, returnValue : 0},
@@ -37,10 +44,10 @@ QUnit
 		{ title: "boolean true", a : true, returnValue : 0},
 		{ title: "NaN", a : NaN, returnValue : 0}
 		])
-	.test("validateNumeric(): return value", function(params) {
+	.test("", function(params) {
 		equal( utils.validateNumeric(params.a), params.returnValue);
 	});
-        
+module("getBodyText: return value");
 QUnit
 	.cases([
 		{ title: "Famous Lines - Mae West", a : 1, returnValue : "Mae West \"I used to be Snow White, but I drifted.\" I'm No Angel (1933)"},
@@ -57,7 +64,7 @@ QUnit
 		{ title: "Opening Lines: Poems - Philip Larkin", a: 12, returnValue : "Philip Larkin \"They f*** you up, your mom and dad\" This be the verse"}
 	])
 
-	.asyncTest("getBodyText(): return value", function(params) {
+	.asyncTest("", function(params) {
 		//need to bind getQuote func to click event to test code to work
 		$('#' + params.a + "").click(utils.getQuote);
         $('#' + params.a + "").click();

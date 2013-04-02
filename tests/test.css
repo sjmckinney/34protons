@@ -1,0 +1,24 @@
+body	{
+	background-color: #cdcdcd;
+	}
+
+#test-title	{
+	width: 1130px;
+	text-align: center;
+	}
+#test-wrapper{
+	width: 1175px;
+	padding-left: 10px;
+	}
+#pageContent {
+	padding-left: 10px;
+	padding-right: 10px;
+	float: left;
+	width: 500px;
+	background-color: white;
+	}
+#testContent {
+	padding-left: 10px;
+	float: right;
+	width: 640px;
+	}

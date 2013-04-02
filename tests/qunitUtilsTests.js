@@ -1,15 +1,14 @@
-//module("Test error message is displayed or not dependent on input", {
-//	setup: function() {
-		var errTxt = 'Value is not positive and numeric; zero value assumed';
-		var utils = new Utils();
-		//Create and append test div for testing of function validateNumeric
-//		$('<div></div>').attr('id', 'validateError').appendTo($('body'));
-//		},
-//	teardown: function() {
-//		}
-//	});
+/*
+* name:		qunitUtilsTests.js
+* author:	Steve McKinney
+* date:		02/04/2013
+* purpose:	Plain vanila qunit test for use with QunitTest.html
+*/
+errTxt = 'Value is not positive and numeric; zero value assumed';
+var utils = new Utils();
+$('<div></div>').attr('id', 'validateError').appendTo($('#qunit-fixture'));
 
-
+module("validateNumeric: error message")
 QUnit
 	.cases([
 		{ title: "minus 1", a : -1, expectedTxt : errTxt},
@@ -24,12 +23,12 @@ QUnit
 		{ title: "boolean true", a : true, expectedTxt : errTxt},
 		{ title: "NaN", a : NaN, expectedTxt : errTxt}
 		])
-	.module("test module")
-	.test("validateNumeric: error message", function(params) {
+	.test("", function(params) {
 		utils.validateNumeric(params.a);
 		equal( $('#validateError').html(), params.expectedTxt);
 	});
 	
+module("validateNumeric: return value")
 QUnit
 	.cases([
 		{ title: "minus 1", a : -1, returnValue : 0},
@@ -44,19 +43,14 @@ QUnit
 		{ title: "boolean true", a : true, returnValue : 0},
 		{ title: "NaN", a : NaN, returnValue : 0}
 		])
-	.test("validateNumeric(): return value", function(params) {
+	.test("", function(params) {
 		equal( utils.validateNumeric(params.a), params.returnValue);
 	});
-	//remove test div
-	$('#validateError').remove();
 
-//
-$('<div></div>').attr('id', 'validateError').appendTo($('body'));
-			$('<a></a>').attr('id', '1').appendTo($('body'));
-			$('<input>').attr({id:'inputDelay', type:"text", value:0}).appendTo($('body'));
-			$('<div></div>').attr('id', 'contentTxt').appendTo($('body'));
-			$('#1').click(utils.getQuote);
-   
+$('<a></a>').attr("class", "testATag").appendTo($('#qunit-fixture'));
+$('<div></div>').attr('id', 'contentTxt').appendTo($('body'));
+
+module("getQuote: ")
 QUnit
 	.cases([
 		{ title: "Famous Lines - Mae West", a : 1, returnValue : "Mae West \"I used to be Snow White, but I drifted.\" I'm No Angel (1933)"},
@@ -72,13 +66,22 @@ QUnit
 		{ title: "Opening Lines: Poems - William Blake", a: 11, returnValue : "William Blake \"Tyger! Tyger! burning bright in the forests of the night. What immortal hand or eye could frame thy fearful symmetry?\" Tyger! Tyger!"},
 		{ title: "Opening Lines: Poems - Philip Larkin", a: 12, returnValue : "Philip Larkin \"They f*** you up, your mom and dad\" This be the verse"}
 	])
-
-	.asyncTest("getBodyText(): return value", function(params) {
+	.asyncTest("return value", function(params) {
 		//need to bind getQuote func to click event to test code to work
-		$('#' + params.a + "").click(utils.getQuote);
-        $('#' + params.a + "").click();
+		$(".testATag").attr('id', params.a);
+		$(".testATag").click(utils.getQuote);
+        $(".testATag").click();
         setTimeout(function(){
             equal($('#contentTxt').text(), params.returnValue);
             start();
             }, 1000);
     });
+QUnit
+    .test("Clean up", function(params) {
+    //Clean up
+		$(".testATag").remove();
+		$("#contentTxt").remove();
+		$("#valdateError").remove();
+		equal(1, 1);
+    });
+
