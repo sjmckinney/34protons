@@ -21,7 +21,6 @@ describe("Illustration Jasmine's inbuilt matchers", function() {
 });
 
 describe("Test of validateNumeric function in utils.js", function() {
-  //alert("test of utils.js");
   var undef;
   it("Test of validateNumeric function; parameter: -1", function(){
       expect(utils.validateNumeric(-1)).toEqual(0);
@@ -57,7 +56,7 @@ describe("Test of validateNumeric function in utils.js", function() {
 
 describe("Test of displayText function in utils.js", function() {
 	it("Displayed text should equal test parameter", function(){
-		$('<div></div>').attr('id', 'test').appendTo($('body'));
+		$('<div></div>').attr('id', 'test').appendTo($('#details'));
 		utils.displayText('test' , 'dummy text');
 		expect($('#test').html()).toEqual("dummy text");
 		$('#test').remove();
@@ -77,9 +76,9 @@ describe("Test of user defined delay in getQuote function", function() {
 		
 		var delay2500ms = 2500;
 	    runs(function(){
-			$('<a></a>').attr('id', '1').appendTo($('body'));
-			$('<input>').attr({id:'inputDelay', type:"text", value:3}).appendTo($('body'));
-			$('<div></div>').attr('id', 'contentTxt').appendTo($('body'));
+			$('<a></a>').attr('id', '1').appendTo($('#details'));
+			$('<input>').attr({id:'inputDelay', type:"text", value:3}).appendTo($('#details'));
+			$('<div></div>').attr('id', 'contentTxt').appendTo($('#details'));
 			$('#1').click(utils.getQuote);
 			$('#1').click();
 			$('#1').remove();
@@ -110,10 +109,10 @@ describe("Test of progress bar functionality", function() {
 		
 		var userDefinedInput = 0;
 		runs(function() {
-			$('<div></div>').attr({id:'delayIndicator', class:'sliderDiv'}).appendTo($('body'));
+			$('<div></div>').attr({id:'delayIndicator', class:'sliderDiv'}).appendTo($('#details'));
 			$('#delayIndicator').css({"height":"5px", "width":"100px"});
 			$('#delayIndicator').progressbar({value:0});
-			$('<input>').attr({id:'inputDelay', type:"text", value:userDefinedInput}).appendTo($('body'));
+			$('<input>').attr({id:'inputDelay', type:"text", value:userDefinedInput}).appendTo($('#details'));
 			utils.ajaxProgress();
 		});
 		
@@ -131,14 +130,14 @@ describe("Test of progress bar functionality", function() {
 		});
 	});
 	
-		it("Test of ajaxProgress function to ensure that progress bar reacts if user-defined delay one or greater", function(){
+	it("Test of ajaxProgress function to ensure that progress bar reacts if user-defined delay one or greater", function(){
 		
 		var userDefinedInput = 1;
 		runs(function() {
-			$('<div></div>').attr({id:'delayIndicator', class:'sliderDiv'}).appendTo($('body'));
+			$('<div></div>').attr({id:'delayIndicator', class:'sliderDiv'}).appendTo($('#details'));
 			$('#delayIndicator').css({"height":"5px", "width":"100px"});
 			$('#delayIndicator').progressbar({value:0});
-			$('<input>').attr({id:'inputDelay', type:"text", value:userDefinedInput}).appendTo($('body'));
+			$('<input>').attr({id:'inputDelay', type:"text", value:userDefinedInput}).appendTo($('#details'));
 			utils.ajaxProgress();
 		});
 		
@@ -151,6 +150,45 @@ describe("Test of progress bar functionality", function() {
 			
 		runs(function() {
 			expect($("#delayIndicator").progressbar("value")).toBeGreaterThan(0);
+			$('#inputDelay').remove();
+			$('#delayIndicator').remove();
+		});
+	});
+	
+	it("Test of ajaxProgress function to ensure that progress bar completes after used defined delay has passed and returns to zero within one second", function(){
+		
+		userDefinedInput = 5;
+		minWaitTime = 5000;
+		runs(function() {
+			$('<div></div>').attr({id:'delayIndicator', class:'sliderDiv'}).appendTo($('#details'));
+			$('#delayIndicator').css({"height":"5px", "width":"100px"});
+			$('#delayIndicator').progressbar({value:0});
+			$('<input>').attr({id:'inputDelay', type:"text", value:userDefinedInput}).appendTo($('#details'));
+			utils.ajaxProgress();
+		});
+		
+		//Wait 5 secs before evaluating
+		waits(minWaitTime);
+		
+		//evaluate value of progress bar after 5000ms but
+		//fail test if expected value not detected within 100ms
+		waitsFor(function() {
+			//console.log($("#delayIndicator").progressbar("value"));
+			return ($("#delayIndicator").progressbar("value") > 99);
+			}, "Progress bar should be activated when user defined input is one or greater", 100);
+			
+		//Check that progress bar value is greater than 99
+		runs(function() {
+			expect($("#delayIndicator").progressbar("value")).toBeGreaterThan(99);
+			//console.log($("#delayIndicator").progressbar("value"));
+		});
+		
+		//Wait further 1000ms for progress bar to be reset
+		waits(1000);
+		
+		runs(function() {
+			expect($("#delayIndicator").progressbar("value")).toBeLessThan(1);
+			console.log($("#delayIndicator").progressbar("value"));
 			$('#inputDelay').remove();
 			$('#delayIndicator').remove();
 		});
