@@ -1,8 +1,10 @@
 
 var Utils = function(){
 
+	this.nonNumericErrMsg = 'Value is not positive and numeric; zero value assumed';
+	this.ajaxErrMsg = 'Failed to contact server';
+	this.url = "./app/bodyText.php?sleep=";
 	var that = this;
-	var nonNumericErrMsg = 'Value is not positive and numeric; zero value assumed';
 	
 	/*
 	*Return input value from field
@@ -57,7 +59,7 @@ var Utils = function(){
 		//test input value is numeric
 		if (!numericExpression.test(inputDelay)) {
 			//and write error message to page if not
-			that.displayText('validateError', nonNumericErrMsg);
+			that.displayText('validateError', that.nonNumericErrMsg);
 			inputDelay = 0;
 		}
 		return inputDelay;
@@ -81,9 +83,12 @@ var Utils = function(){
 	    e = e||window.event;
 	    var src = e.target||e.srcElement;
 		var sleepTime = that.getInputValue();
-		var URL = "./app/bodyText.php?sleep=" + sleepTime + "&MnuItm=" + src.id;
+		var URL = that.url + sleepTime + "&MnuItm=" + src.id;
 		$.get(URL, function(data){
 			that.displayText('contentTxt', data)
+			})
+			.fail(function() {
+			that.displayText('contentTxt', that.ajaxErrMsg)
 			});
 	};
 }
@@ -99,6 +104,10 @@ var Utils = function(){
 try{
 	var utils = new Utils();
     $(document).ready(function(){
+    
+    //$(document).ajaxError(function(event, request, settings) {
+		//utils.displayText('contentTxt', utils.ajaxErrMsg)
+	//});
     
     //hide child menu items
     $('ul.drop ul').css('visibility', 'hidden');
