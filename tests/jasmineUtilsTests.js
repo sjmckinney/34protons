@@ -20,39 +20,52 @@ describe("Illustration Jasmine's inbuilt matchers", function() {
 		expect(two).not.toBeUndefined();
     })
 });
+var undef;
 
-describe("Test of validateNumeric function in utils.js", function() {
-  var undef;
-  it("Test of validateNumeric function; parameter: -1", function(){
-      expect(utils.validateNumeric(-1)).toEqual(0);
-    })
-  it("Test of validateNumeric function; parameter: 0.1", function(){
-      expect(utils.validateNumeric(0.1)).toEqual(0);
-    })
-  it("Test of validateNumeric function; parameter: 1", function(){
-      expect(utils.validateNumeric(1)).toEqual(1);
-    })
-  it("Test of validateNumeric function; parameter: 10", function(){
-      expect(utils.validateNumeric(10)).toEqual(10);
-    })
-  it("Test of validateNumeric function; parameter: '1'", function(){
-      expect(utils.validateNumeric('1')).toEqual("1");
-    })
-  it("Test of validateNumeric function; parameter: '1a'", function(){
-      expect(utils.validateNumeric('1a')).toEqual(0);
-    })
-  it("Test of validateNumeric function; parameter: undefined", function(){
-      expect(utils.validateNumeric(undef)).toEqual(0);
-    })
-  it("Test of validateNumeric function; parameter: non-numeric !", function(){
-      expect(utils.validateNumeric('!')).toEqual(0);
-    })
-  it("Test of validateNumeric function; parameter: NaN", function(){
-      expect(utils.validateNumeric(NaN)).toEqual(0);
-    })
-  it("Test of validateNumeric function; parameter: boolean true", function(){
-      expect(utils.validateNumeric(true)).toEqual(0);
-    })
+describe("Test of validateNumeric function in utils.js: failing values", function() {
+
+	it("Test of validateNumeric function; parameter: -1" , function(){
+		expect(utils.validateNumeric(-1)).toBe(false)
+	});
+	
+	it("Test of validateNumeric function; parameter: 0.1" , function(){
+		expect(utils.validateNumeric(0.1)).toBe(false)
+	});
+	
+	it("Test of validateNumeric function; parameter: undefined" , function(){
+		expect(utils.validateNumeric(undef)).toBe(false)
+	});
+	
+	it("Test of validateNumeric function; parameter: \'1a\'" , function(){
+		expect(utils.validateNumeric('1a')).toBe(false)
+	});
+	
+	it("Test of validateNumeric function; parameter: empty string" , function(){
+		expect(utils.validateNumeric("")).toBe(false)
+	});
+	
+	it("Test of validateNumeric function; parameter: spaces" , function(){
+		expect(utils.validateNumeric("  ")).toBe(false)
+	});
+});
+
+describe("Test of validateNumeric function in utils.js: passing values", function() {
+
+	it("Test of validateNumeric function; parameter: 1" , function(){
+		expect(utils.validateNumeric(1)).toBe(true)
+	});
+	
+	it("Test of validateNumeric function; parameter: 10" , function(){
+		expect(utils.validateNumeric(10)).toBe(true)
+	});
+	
+	it("Test of validateNumeric function; parameter: \'1\'" , function(){
+		expect(utils.validateNumeric('1')).toBe(true)
+	});
+	
+	it("Test of validateNumeric function; parameter: \"2\"" , function(){
+		expect(utils.validateNumeric("2")).toBe(true)
+	});
 });
 
 describe("Test of displayText function in utils.js", function() {
@@ -64,13 +77,7 @@ describe("Test of displayText function in utils.js", function() {
     })
 });
 
-console.log(utils.url);
-
-console.log(utils.url);
-
 describe("Test that correct error message displayed when server error occurs", function() {
-
-	
 
 	it("Setup", function(){
 		runs(function() {
@@ -107,8 +114,7 @@ describe("Test of Jamine spyOn function in conjunction with utils.displayText fu
 		utils.displayText('arg1', 'arg2');
 		utils.displayText('arg3', 'arg4');
 	});
-	
-	
+		
 	it("tracks that the spy was called", function() {
 		expect(utils.displayText).toHaveBeenCalled();
 	});
@@ -149,7 +155,6 @@ describe("Test that bodyTest.php returns correct text", function() {
 	    "Philip Larkin \"They f*** you up, your mom and dad\" This be the verse"
     ];
 
-    
     it("Setup fixtures", function(){
         runs(function(){
             $('<a></a>').attr('class', 'menuItem').appendTo($('#details'));

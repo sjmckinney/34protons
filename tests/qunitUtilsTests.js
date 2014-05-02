@@ -1,14 +1,35 @@
 /*
 * name:		qunitUtilsTests.js
 * author:	Steve McKinney
-* date:		02/04/2013
-* purpose:	Plain vanila qunit test for use with QunitTest.html
+* date:		02/04/2014
+* purpose:	QUnit version of 34protons test demonstrating use
+*			of qunit-parameterize.js to loop through arguments
 */
-errTxt = 'Value is not positive and numeric; zero value assumed';
+var errTxt = 'Value is not positive and numeric; zero value assumed';
 var utils = new Utils();
-$('<div></div>').attr('id', 'validateError').appendTo($('#qunit-fixture'));
+$('<div></div>').attr('id', 'validateError').appendTo('#qunit-fixture');
 
-module("validateNumeric: error message")
+module("validateNumeric: validate input value is numeric")
+QUnit
+	.cases([
+		{ title: "minus 1", a : -1, expected : false},
+		{ title: "zero", a : 0, expected : true},
+		{ title: "decimal 0.1", a : 0.1, expected : false},
+		{ title: "integer 1", a : 1, expected : true},
+		{ title: "string 1", a : '1', expected : true},
+		{ title: "undefined", a : undefined, expected : false},
+		{ title: "empty string", a : '', expected : false},
+		{ title: "$", a : '$', expected : false},
+		{ title: "new line", a : '\n', expected : false},
+		{ title: "boolean true", a : true, expected : false},
+		{ title: "NaN", a : NaN, expected : false}
+		])
+	.test("", function(params) {
+		equal( utils.validateNumeric(params.a), params.expected);
+
+	});
+	
+module("validateInputDelay: return error message")
 QUnit
 	.cases([
 		{ title: "minus 1", a : -1, expectedTxt : errTxt},
@@ -24,15 +45,16 @@ QUnit
 		{ title: "NaN", a : NaN, expectedTxt : errTxt}
 		])
 	.test("", function(params) {
-		utils.validateNumeric(params.a);
+		$('<input id="inputDelay" type="text"/>').appendTo($('#qunit-fixture'));
+		$('input#inputDelay').val(params.a);
+		utils.validateInputDelay();
 		equal( $('#validateError').html(), params.expectedTxt);
 	});
 	
-module("validateNumeric: return value")
+module("validateInputDelay: input element return value")
 QUnit
 	.cases([
 		{ title: "minus 1", a : -1, returnValue : 0},
-		{ title: "zero", a : 0, returnValue : 0},
 		{ title: "decimal 0.1", a : 0.1, returnValue : 0},
 		{ title: "integer 1", a : 1, returnValue : 1},
 		{ title: "string 1", a : new String("1"), returnValue :"1"},
@@ -44,13 +66,14 @@ QUnit
 		{ title: "NaN", a : NaN, returnValue : 0}
 		])
 	.test("", function(params) {
-		equal( utils.validateNumeric(params.a), params.returnValue);
+		$('<input id="inputDelay" type="text"/>').appendTo('#qunit-fixture');
+		$('input#inputDelay').val(params.a);
+		equal( utils.validateInputDelay(), params.returnValue);
 	});
 
-$('<a></a>').attr("class", "testATag").appendTo($('#qunit-fixture'));
 $('<div></div>').attr('id', 'contentTxt').appendTo($('body'));
 
-module("getQuote: ")
+module("getQuote: validate that passing appropriate id to getQuote retrieves correct string")
 QUnit
 	.cases([
 		{ title: "Famous Lines - Mae West", a : 1, returnValue : "Mae West \"I used to be Snow White, but I drifted.\" I'm No Angel (1933)"},
@@ -67,7 +90,11 @@ QUnit
 		{ title: "Opening Lines: Poems - Philip Larkin", a: 12, returnValue : "Philip Larkin \"They f*** you up, your mom and dad\" This be the verse"}
 	])
 	.asyncTest("return value", function(params) {
-		//need to bind getQuote func to click event to test code to work
+		/*
+		* need to assign appropriate id to element and then
+		* bind getQuote function to same element via click event
+		*/
+		$('<a></a>').attr("class", "testATag").appendTo('#qunit-fixture');
 		$(".testATag").attr('id', params.a);
 		$(".testATag").click(utils.getQuote);
         $(".testATag").click();
@@ -76,10 +103,9 @@ QUnit
             start();
             }, 1000);
     });
+module("Remove temporarily attached elements")
 QUnit
     .test("Clean up", function(params) {
-    //Clean up
-		$(".testATag").remove();
 		$("#contentTxt").remove();
 		$("#valdateError").remove();
 		equal(1, 1);

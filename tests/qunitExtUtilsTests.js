@@ -8,8 +8,26 @@
 
 var errTxt = 'Value is not positive and numeric; zero value assumed';
 var utils = new Utils();
-//Test error message is displayed or not dependent on input
-module("validateNumeric: error msg");
+module("validateNumeric: validate input value is numeric")
+QUnit
+	.cases([
+		{ title: "minus 1", a : -1, expected : false},
+		{ title: "zero", a : 0, expected : true},
+		{ title: "decimal 0.1", a : 0.1, expected : false},
+		{ title: "integer 1", a : 1, expected : true},
+		{ title: "string 1", a : '1', expected : true},
+		{ title: "undefined", a : undefined, expected : false},
+		{ title: "empty string", a : '', expected : false},
+		{ title: "$", a : '$', expected : false},
+		{ title: "new line", a : '\n', expected : false},
+		{ title: "boolean true", a : true, expected : false},
+		{ title: "NaN", a : NaN, expected : false}
+		])
+	.test("", function(params) {
+		equal( utils.validateNumeric(params.a), params.expected);
+	});
+
+module("validateInputDelay: return error message")
 QUnit
 	.cases([
 		{ title: "minus 1", a : -1, expectedTxt : errTxt},
@@ -25,10 +43,30 @@ QUnit
 		{ title: "NaN", a : NaN, expectedTxt : errTxt}
 		])
 	.test("", function(params) {
-		$('#validateError').html("");
-		utils.validateNumeric(params.a);
+		$('input#inputDelay').val(params.a);
+		utils.validateInputDelay();
 		equal( $('#validateError').html(), params.expectedTxt);
 	});
+
+module("validateInputDelay: input element return value")
+QUnit
+	.cases([
+		{ title: "minus 1", a : -1, returnValue : 0},
+		{ title: "decimal 0.1", a : 0.1, returnValue : 0},
+		{ title: "integer 1", a : 1, returnValue : 1},
+		{ title: "string 1", a : new String("1"), returnValue :"1"},
+		{ title: "undefined", a : undefined, returnValue : 0},
+		{ title: "empty string", a : '', returnValue : 0},
+		{ title: "$", a : '$', returnValue : 0},
+		{ title: "new line", a : '\n', returnValue : 0},
+		{ title: "boolean true", a : true, returnValue : 0},
+		{ title: "NaN", a : NaN, returnValue : 0}
+		])
+	.test("", function(params) {
+		$('input#inputDelay').val(params.a);
+		equal( utils.validateInputDelay(), params.returnValue);
+	});
+/*
 module("validateNumeric: return value");	
 QUnit
 	.cases([
@@ -47,6 +85,8 @@ QUnit
 	.test("", function(params) {
 		equal( utils.validateNumeric(params.a), params.returnValue);
 	});
+*/	
+	
 module("getBodyText: return value");
 QUnit
 	.cases([

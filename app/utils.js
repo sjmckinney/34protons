@@ -17,21 +17,24 @@ var Utils = function(){
 	 * Animate progress bar underneath input field
 	 */
 	this.ajaxProgress = function(){
-		var inputDelay = that.getInputValue();
-		var delay = Number(that.validateNumeric(inputDelay));
+	
+		//validate input is valid before casting it to number
+		var delay = Number(that.validateInputDelay());
 		//return if value  is zero
 		if(!delay > 0) {
 			return
 			};
-		//Since progress bar is 100 pixels wide calc number of px to be added each sec
+		//Since progress bar is 100 pixels wide calculate
+		//number of pixels to be displayed each sec
 		var max = 100;
-		var delayPerSec = max/delay;
+		var pixelsPerSec = max/delay;
 		var secsPassed = 0;
-			var innerFunc = function() {
+		//Create closure so that can track secsPassed
+			var setPixels = function() {
 					//check that progress bar length has not completed i.e. is not greater than 99 (max - 1).
-					//If completed then clear timeout, reset value of progress bar to 0 and return from innerfunc
-					if($("#delayIndicator").progressbar( 'value') > (max - 1)) {
-						$( "#delayIndicator" ).progressbar( 'value', 0 );
+					//If completed then clear timeout, reset value of progress bar to 0 and return from setPixels()
+					if($("#delayIndicator").progressbar('value') > (max - 1)) {
+						$( "#delayIndicator" ).progressbar('value', 0 );
 						clearTimeout(te);
 						return;
 					}
@@ -41,28 +44,42 @@ var Utils = function(){
 					if(secsPassed > delay) {
 						return;
 					}
-					var delayPassed = secsPassed * delayPerSec;
+					var delayPassed = secsPassed * pixelsPerSec;
 					$("#delayIndicator").progressbar('value', delayPassed);
 				};
-		//recursively call the innerFunc to set or clear progress bar every sec
-		var te = setInterval(innerFunc, 1000);
+		//Call setPixels() at second intervals
+		var te = setInterval(setPixels, 1000);
+	};
+	
+	/*
+	* Get input time delay and display
+	* error message and return zero value
+	*/
+	this.validateInputDelay = function(){
+		//clear input field
+		that.displayText('validateError', null);
+		
+		//get input field value
+		var input = that.getInputValue();
+
+		if (!that.validateNumeric(input)) {
+			//write error message to page if not numeric
+			that.displayText('validateError', that.nonNumericErrMsg);
+			input = 0;
+		}
+		return input;
 	};
 	
 	/*
 	* Validate input is numeric
 	*/
 	this.validateNumeric = function(inputDelay){
-		that.displayText('validateError', null);
-		//initialize the match expression
+
 	    var numericExpression = /^[0-9]+$/;
-	    //var numericExpression = /^\d+$/; //- use of meta character does not preclude decimals, negative and numbers as strings;
+	    //set regex to /^[0-9]+$/ rather than /^\d+$/ as use of meta
+		//character does not preclude decimals, negative and numbers as strings;
 		//test input value is numeric
-		if (!numericExpression.test(inputDelay)) {
-			//and write error message to page if not
-			that.displayText('validateError', that.nonNumericErrMsg);
-			inputDelay = 0;
-		}
-		return inputDelay;
+		return numericExpression.test(inputDelay);
 	};
 	
 	/*
@@ -91,23 +108,16 @@ var Utils = function(){
 			that.displayText('contentTxt', that.ajaxErrMsg)
 			});
 	};
-}
+};
 
 //end of utils object declaration
 
 /*
- *jQuery document.ready function wrapped in try/catch block for reasons I can't remember
- *
- *
- *
+ *jQuery document.ready function wrapped in try/catch block
  */
 try{
 	var utils = new Utils();
     $(document).ready(function(){
-    
-    //$(document).ajaxError(function(event, request, settings) {
-		//utils.displayText('contentTxt', utils.ajaxErrMsg)
-	//});
     
     //hide child menu items
     $('ul.drop ul').css('visibility', 'hidden');
@@ -134,6 +144,7 @@ try{
 		//Prevent the event target from being hidden if immediate parent class is 'menuParent'
 		//Would be simpler to assign value like 'submenuParent' to those menus with subitems
 		if(!$(evt.currentTarget).parent().parent().is('.menuParent')){
+			$(evt.currentTarget).siblings().css('visibility', 'hidden');
 			$(evt.currentTarget).css('visibility', 'hidden');
 		}
 		$('ul.drop ul').css('visibility', 'hidden');
@@ -145,8 +156,8 @@ try{
     $('.menuItem').click(utils.ajaxProgress);
     //assign input validation to events on input field
     $('#inputDelay').blur(function(){
-	var input = utils.getInputValue();
-	utils.validateNumeric(input);
+		var input = utils.getInputValue();
+		utils.validateInputDelay(input);
     });
     
     //assign draggble, droppable and progress bar
