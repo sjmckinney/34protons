@@ -90,7 +90,7 @@ describe("Test that correct error message displayed when server error occurs", f
 		});
     });
     
-    waits(250);
+    waits(1500);
     
 	it("Displayed text should equal " + utils.ajaxErrMsg, function(){
 		expect($('#contentTxt').html()).toEqual(utils.ajaxErrMsg);
@@ -176,11 +176,11 @@ describe("Test that bodyTest.php returns correct text", function() {
                     $(".menuItem").click();
                 })
                 
-                waits(250);
+                waits(350);
                 
                 waitsFor(function(){
                     return Boolean($('#contentTxt').text().length);
-                    }, "Text should be present", 150
+                    }, "Text should be present", 250
                 );
                 
                 runs(function(){
