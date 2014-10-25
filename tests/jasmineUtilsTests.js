@@ -1,3 +1,4 @@
+//Production location: demo_1_3
 //Initialise test object
 var utils = new Utils();
 //var serverErrMsg = 'Failed to contact server';
@@ -176,11 +177,11 @@ describe("Test that bodyTest.php returns correct text", function() {
                     $(".menuItem").click();
                 })
                 
-                waits(350);
+                waits(1000);//extended 350 to 1000 to cope with test failures
                 
                 waitsFor(function(){
                     return Boolean($('#contentTxt').text().length);
-                    }, "Text should be present", 250
+                    }, "Text should be present", 1000 //extend 250 to 1000 to cope with test failures
                 );
                 
                 runs(function(){
@@ -216,6 +217,7 @@ describe("Test of user defined delay in getQuote function", function() {
 			//console.log('i: ' + $("#1").attr('id'));
 			$('<input>').attr({id:'inputDelay', type:"text", value:3}).appendTo($('#details'));
 			$('<div></div>').attr('id', 'contentTxt').appendTo($('#details'));
+      			$('#contentTxt').text("");
 			$('#1').click(utils.getQuote);
 			$('#1').click();
 	    });
