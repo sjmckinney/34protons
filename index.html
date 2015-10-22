@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -126,24 +126,50 @@
             <div id="contentTxt" class='content'>Text Content</div>
             <div id='radioBtns' class='content'>
                 <div class='contentLegend'>Radio buttons</div>
-                <input type='radio' name='radioSet' value='one' />Radio 1<br />
+                <input type='radio' name='radioSet' value='one' checked/>Radio 1<br />
                 <input type='radio' name='radioSet' value='two' />Radio 2
             </div>
             <div id='checkBoxes' class='content'>
                 <div class='contentLegend'>Check boxes</div>
-                <input type="checkbox" name="vehicle" value="one" />Checkbox 1<br />
-                <input type="checkbox" name="vehicle" value="two" />Checkbox 2
+                <input type="checkbox" name="Checkbox1" value="one" />Checkbox 1<br />
+                <input type="checkbox" name="Checkbox2" value="two" />Checkbox 2
             </div>
-                <div id='Drag-Drop' class='content'>
-                    <div class='contentLegend'>Drag and drop<span id='dropCount'></span></div>
-                    <div class='dragSrc'>
-                        <div class='contentLegend'>Drag</div>
-                        <img id='draggable' src='app/sphere.png'/>
-                    </div>
-                    <div id='droppable' class='dragDrop'>
-                        <div class='contentLegend'>Drop</div>
-                    </div>
+            <div id='links' class='content'>
+                <div class='contentLegend'>Hyperlinks</div>
+                <a href='http://www.34protons.co.uk/software-testing/webdriver/frankensteins-lab/'>Frankensteins Lab</a></br>
+                <a href='http://www.34protons.co.uk/software-testing/thoughts-on-testing-the-same-site-using-qunit-and-jasmine/'>QUnit vs Jasmine</a>
+            </div>
+            <div id='textInput' class='content'>
+                <div class='contentLegend'>Text input</div>
+                    <form id ='textForm'>
+                        <input type='text' name='txtInpt'>
+                    </form>
+            </div>
+            <div id='buttons' class='content'>
+                <div class='contentLegend'>Button</div>
+                    <button type='button' id='clickMe'>Click Me</button>
+                    <span id='clickMeText'>I have been clicked <span id='nosClicks'>0</span> times</span>
+            </div>
+            <div id='select' class='content'>
+                <div class='contentLegend'>Select</div>
+                    <form>
+                        <select name='fruit'>
+                            <option value='banana'>banana</option>
+                            <option value='apple'>apple</option>
+                            <option value='pear'>pear</option>
+                        </select>
+                    </form>
+            </div>
+            <div id='Drag-Drop' class='content'>
+                <div class='contentLegend'>Drag and drop<span id='dropCount'></span></div>
+                <div class='dragSrc'>
+                    <div class='contentLegend'>Drag</div>
+                    <img id='draggable' src='app/sphere.png'/>
                 </div>
+                <div id='droppable' class='dragDrop'>
+                    <div class='contentLegend'>Drop</div>
+                </div>
+            </div>
             <div id='password' class='content'>
                 <div class='contentLegend'>Password</div>
                 <input type="password" name="pwd" value="********" />
