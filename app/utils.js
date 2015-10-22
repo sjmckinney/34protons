@@ -5,6 +5,7 @@ var Utils = function(){
 	this.ajaxErrMsg = 'Failed to contact server';
 	this.url = "./app/bodyText.php?sleep=";
 	var that = this;
+	this.nosClicks = 0;
 	
 	/*
 	*Return input value from field
@@ -108,6 +109,13 @@ var Utils = function(){
 			that.displayText('contentTxt', that.ajaxErrMsg)
 			});
 	};
+
+	/*
+	*/
+	this.countButtonClicks = function() {
+		utils.nosClicks ++;
+		utils.displayText('nosClicks', utils.nosClicks);
+	}
 };
 
 //end of utils object declaration
@@ -118,6 +126,9 @@ var Utils = function(){
 try{
 	var utils = new Utils();
     $(document).ready(function(){
+
+    //assign function to button click event
+    $('#clickMe').click(utils.countButtonClicks);
     
     //hide child menu items
     $('ul.drop ul').css('visibility', 'hidden');
