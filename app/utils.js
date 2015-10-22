@@ -147,6 +147,9 @@ try{
 			$(evt.currentTarget).siblings().css('visibility', 'hidden');
 			$(evt.currentTarget).css('visibility', 'hidden');
 		}
+		//Hide child menu items if intermediate rather than child menu clicked
+		$('ul.drop li li li').css('visibility', 'hidden');
+		//Hide intermediate menu items
 		$('ul.drop ul').css('visibility', 'hidden');
 	});
 	
