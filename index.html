@@ -133,8 +133,10 @@
             </div>
             <div id='checkBoxes' class='content'>
                 <div class='contentLegend'>Check boxes</div>
-                <input type="checkbox" name="Checkbox1" value="one" />Checkbox 1<br />
-                <input type="checkbox" name="Checkbox2" value="two" />Checkbox 2
+                <label for="checkbox1">Checkbox 1</label>
+                <input type="checkbox" id="checkbox1" name="Checkbox1" value="one" /><br />
+                <label for="checkbox2">Checkbox 2</label>
+                <input type="checkbox" id="checkbox2"name="Checkbox2" value="two" />
             </div>
             <div id='links' class='content'>
                 <div class='contentLegend'>Hyperlinks</div>
@@ -153,9 +155,10 @@
                     <span id='clickMeText'>I have been clicked <span id='nosClicks'>0</span> times</span>
             </div>
             <div id='select' class='content'>
-                <div class='contentLegend'>Select</div>
+                <div class='contentLegend'>Select&nbsp;
+                <button id="toggleDisabled">Toggle</br>Disabled</button></div>
                     <form>
-                        <select name='fruit'>
+                        <select id="fruitSelect" name='fruit'>
                             <option value='banana'>banana</option>
                             <option value='apple'>apple</option>
                             <option value='pear'>pear</option>

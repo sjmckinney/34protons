@@ -115,7 +115,17 @@ var Utils = function(){
 	this.countButtonClicks = function() {
 		utils.nosClicks ++;
 		utils.displayText('nosClicks', utils.nosClicks);
-	}
+	};
+
+	this.toggleDisabled  = function () {
+		var select = $("#fruitSelect");
+		if (select.attr('disabled')) {
+        		select.removeAttr("disabled");
+    		}
+    	else{
+        		select.prop('disabled', 'disabled');
+    		}
+	};
 };
 
 //end of utils object declaration
@@ -127,8 +137,11 @@ try{
 	var utils = new Utils();
     $(document).ready(function(){
 
-    //assign function to button click event
+    //assign function to count clicks button click event
     $('#clickMe').click(utils.countButtonClicks);
+
+    //assign function to disalble select button click event
+    $('#toggleDisabled').click(utils.toggleDisabled);
     
     //hide child menu items
     $('ul.drop ul').css('visibility', 'hidden');
