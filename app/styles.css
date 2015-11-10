@@ -120,3 +120,19 @@ ul.drop li:hover { position: relative; z-index: 599; cursor: default; background
 	width: 240px;
 	height: 75px;
 	}
+table {
+	width: 100%;
+	}
+
+th {
+	background-color: black;
+	text-align: left;
+	color: white;
+	}
+
+th, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+    padding: 15px;
+    width: 1*;
+	}
