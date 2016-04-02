@@ -152,6 +152,7 @@
             <div id='buttons' class='content'>
                 <div class='contentLegend'>Button</div>
                     <button type='button' id='clickMe'>Click Me</button>
+                    <button type='button' id='clickMe'>Click Me</button>
                     <span id='clickMeText'>I have been clicked <span id='nosClicks'>0</span> times</span>
             </div>
             <div id='select' class='content'>
@@ -183,6 +184,13 @@
                 <div class='contentLegend'>File select</div>
                 <input type="file" />
             </div>
+            <div id='visibleElement' class='content'>
+                <p class='contentLegend'>Visible and hidden elements</p>
+                <p>Block display paragraph directly below</p>
+                <p id="block" style="display: block;"><i>Display Block Text</i></p>
+                <p>Hidden paragraph directly below</p>
+                <p id="none" style="display: none;"><i>Display None Text</i></p>
+            </div>
             <div id='table' class='content'>
                 <div class='contentLegend'>Table</div>
                 <table>
@@ -193,7 +201,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Apple</td>
+                            <td>Apple, </br>Cox, </br>Pippin</td>
                             <td>Orange</td>
                             <td>Pear</td>
                         </tr>
